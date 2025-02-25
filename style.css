@@ -1,0 +1,5 @@
+body {
+    overflow: hidden; /* esconder qualquer conteúdo que ultrapasse os limites do elemento */
+    margin: 0; /* Remove qualquer espaço externo ao redor do elemento */
+    padding: 0; /* Remove qualquer espaço interno dentro do elemento */
+}
