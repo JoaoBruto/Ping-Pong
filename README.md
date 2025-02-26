@@ -16,7 +16,7 @@ Este é um projeto simples de um jogo de Ping Pong utilizando HTML, CSS e JavaSc
    ```
 2. Acesse a pasta do projeto:
    ```bash
-   cd ping-pong-game
+   cd ping-pong
    ```
 3. Abra o arquivo `index.html` no navegador.
 
