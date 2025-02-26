@@ -31,8 +31,18 @@ const canvasEL = document.querySelector("canvas")
 
             // fazendo a bolinha
             canvasCTX.beginPath()
-            canvasCTX.arc(200, 300, 20, 0, 2 * Math.PI, false)
+            canvasCTX.arc(200, 300, 20, 0, 2 * Math.PI, false) // Por o JS não tem .fillarc, se usa esses comandos para arrumar do jeito certo (substituindo o .fillarc)
             canvasCTX.fill()
+
+            // fazendo o placar
+            canvasCTX.font = 'bold 72px Arial'
+            canvasCTX.textAlign = 'center'
+            canvasCTX.textBaseline = 'top'
+            canvasCTX.fillStyle = '#01341D'
+            canvasCTX.fillText('3', window.innerWidth / 4, 50)
+            canvasCTX.fillText('4', window.innerWidth / 4 + window.innerWidth / 2, 50)
+
+
 
         }
 
