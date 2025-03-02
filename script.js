@@ -1,6 +1,7 @@
 const canvasEL = document.querySelector("canvas")
         const canvasCTX = canvasEL.getContext("2d") // getContext, pega o contexto do
         const linewidht = 15
+        gapX = 10
 
          // desenhando o campo
         const field = {
@@ -8,9 +9,43 @@ const canvasEL = document.querySelector("canvas")
             h: window.innerHeight, // altura
             draw: function() {
                 canvasCTX.fillStyle = '#286047'
-                canvasCTX.fillRect(0, 0, window.innerWidth, window.innerHeight) // Definir o tamanho do retângulo (x,y,largura,altura). Precisa nessa ordem: Largura e depois altura para não dar erro
+                canvasCTX.fillRect(0, 0, this.w, this.h) // Definir o tamanho do retângulo (x,y,largura,altura). Precisa nessa ordem: Largura e depois altura para não dar erro
             },
         }
+
+        const line = {
+            w: 15,
+            h: field.h,
+            draw: function() {
+                // linha central
+            canvasCTX.fillStyle = '#ffff' // cor branca para a linha    
+            canvasCTX.fillRect(field.w / 2 - this.w / 2, 0, this.w, this.h)
+            },
+        }
+
+        const leftPaddle = { // Raquete esquerda 
+            x: gapX,
+            y: 100,
+            w: line.w,
+            h: 200,
+            draw: function () {
+                canvasCTX.fillStyle = '#ffff'
+                canvasCTX.fillRect(this.x, this.y, this.w, this.h)
+            },
+        }
+
+        const rightPaddle = {
+            x: field.w - line.w - gapX,
+            y: 100,
+            w: line.w,
+            h: 200,
+            draw: function () {
+                canvasCTX.fillStyle = '#ffff'
+                canvasCTX.fillRect(this.x, this.y, this.w, this.h)
+            },
+        }
+            
+        
 
         function setup() {
             canvasEL.width =  field.w
@@ -19,16 +54,14 @@ const canvasEL = document.querySelector("canvas")
 
         function draw() {
             field.draw()
+            line.draw()
+            leftPaddle.draw()
+            rightPaddle.draw()
             
             // linha central
             canvasCTX.fillStyle = '#ffff' // cor branca para a linha    
-            canvasCTX.fillRect(window.innerWidth / 2 - linewidht / 2, 0, linewidht, window.innerHeight)
-
-            // fazendo a raquete esquerda   
-            canvasCTX.fillRect(10, 400, linewidht, 200)
-
-            // raquete direita
-            canvasCTX.fillRect(window.innerWidth - linewidht - 10, 120, linewidht, 200)
+            canvasCTX.fillRect(window.innerWidth / 2 - linewidht / 2, 0, linewidht, window.innerHeight)  
+            
 
             // fazendo a bolinha
             canvasCTX.fillStyle = '#ffff' // cor branca pra bolinha
