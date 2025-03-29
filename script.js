@@ -62,12 +62,19 @@ const canvasEL = document.querySelector("canvas")
             x: 380,
             y: 120,
             r: 20,
+            speed: 10,
+            _move: function () {
+                this.x += 1 * this.speed
+                this.y += 1 * this.speed
+            },
             draw: function() {
-            canvasCTX.fillStyle = '#ffff' // cor branca pra bolinha
-            canvasCTX.beginPath()
-            canvasCTX.arc(this.x, this.y, this.r, 0, 2 * Math.PI, false) // Por o JS não tem .fillarc, se usa esses comandos para arrumar do jeito certo (substituindo o .fillarc)
-            canvasCTX.fill()
-            }
+                canvasCTX.fillStyle = '#ffff' // cor branca pra bolinha
+                canvasCTX.beginPath()
+                canvasCTX.arc(this.x, this.y, this.r, 0, 2 * Math.PI, false) // Por o JS não tem .fillarc, se usa esses comandos para arrumar do jeito certo (substituindo o .fillarc)
+                canvasCTX.fill()
+
+                this._move()
+            },  
         }
             
         
@@ -88,15 +95,27 @@ const canvasEL = document.querySelector("canvas")
             // linha central
             canvasCTX.fillStyle = '#ffff' // cor branca para a linha    
             canvasCTX.fillRect(window.innerWidth / 2 - linewidht / 2, 0, linewidht, window.innerHeight)  
-            
-            
-
-            
-            
-
-
-
         }
 
 setup()
 draw()
+
+window.animateFrame = (function () {
+    return (
+        window.requestAnimationFrame ||
+        window.webkitRequestAnimationFrame ||
+        window.mozRequestAnimationFrame ||
+        window.oRequestAnimationFrame ||
+        window.msRequestAnimationFrame||
+        function (callback) {
+            return window.setTimeout(callback, 1000 / 60)
+        }
+    )
+})()
+function main () {
+    animateFrame(main)
+    draw()
+}
+
+setup()
+main()
