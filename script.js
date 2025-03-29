@@ -44,6 +44,18 @@ const canvasEL = document.querySelector("canvas")
                 canvasCTX.fillRect(this.x, this.y, this.w, this.h)
             },
         }
+
+        const ball = { // fazendo a bolinha
+            x: 300,
+            y: 200,
+            r: 20,
+            draw: function() {
+            canvasCTX.fillStyle = '#ffff' // cor branca pra bolinha
+            canvasCTX.beginPath()
+            canvasCTX.arc(this.x, this.y, this.r, 0, 2 * Math.PI, false) // Por o JS não tem .fillarc, se usa esses comandos para arrumar do jeito certo (substituindo o .fillarc)
+            canvasCTX.fill()
+            }
+        }
             
         
 
@@ -57,17 +69,13 @@ const canvasEL = document.querySelector("canvas")
             line.draw()
             leftPaddle.draw()
             rightPaddle.draw()
+            ball.draw()
             
             // linha central
             canvasCTX.fillStyle = '#ffff' // cor branca para a linha    
             canvasCTX.fillRect(window.innerWidth / 2 - linewidht / 2, 0, linewidht, window.innerHeight)  
             
-
-            // fazendo a bolinha
-            canvasCTX.fillStyle = '#ffff' // cor branca pra bolinha
-            canvasCTX.beginPath()
-            canvasCTX.arc(200, 300, 20, 0, 2 * Math.PI, false) // Por o JS não tem .fillarc, se usa esses comandos para arrumar do jeito certo (substituindo o .fillarc)
-            canvasCTX.fill()
+            
 
             // fazendo o placar
             canvasCTX.font = 'bold 72px Arial'
