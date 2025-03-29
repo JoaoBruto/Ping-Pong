@@ -45,9 +45,22 @@ const canvasEL = document.querySelector("canvas")
             },
         }
 
+        const score = { // fazendo o placar
+            human: 1,
+            computer: 2,
+            draw: function() {
+            canvasCTX.font = 'bold 72px Arial'
+            canvasCTX.textAlign = 'center'
+            canvasCTX.textBaseline = 'top'
+            canvasCTX.fillStyle = '#01341D'
+            canvasCTX.fillText(this.human, field.w / 4, 50)
+            canvasCTX.fillText(this.computer, field.w / 4 + field.w / 2, 50)
+            }
+        }
+
         const ball = { // fazendo a bolinha
-            x: 300,
-            y: 200,
+            x: 380,
+            y: 120,
             r: 20,
             draw: function() {
             canvasCTX.fillStyle = '#ffff' // cor branca pra bolinha
@@ -69,6 +82,7 @@ const canvasEL = document.querySelector("canvas")
             line.draw()
             leftPaddle.draw()
             rightPaddle.draw()
+            score.draw()
             ball.draw()
             
             // linha central
@@ -77,13 +91,8 @@ const canvasEL = document.querySelector("canvas")
             
             
 
-            // fazendo o placar
-            canvasCTX.font = 'bold 72px Arial'
-            canvasCTX.textAlign = 'center'
-            canvasCTX.textBaseline = 'top'
-            canvasCTX.fillStyle = '#01341D'
-            canvasCTX.fillText('3', window.innerWidth / 4, 50)
-            canvasCTX.fillText('4', window.innerWidth / 4 + window.innerWidth / 2, 50)
+            
+            
 
 
 
